@@ -3,6 +3,8 @@ import "./App.css";
 
 function App() {
   const [locationAllowed, setLocationAllowed] = useState(null); // Tracks user's location permission
+  const [coordinates, setCoordinates] = useState(null); // Stores the user's coordinates
+  const [userIP, setUserIP] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
 
@@ -10,8 +12,28 @@ function App() {
     "https://script.google.com/macros/s/AKfycbxX4qKIaRwBmLrCmgb00mDIcORuXfWlAtGSBaPdh1PuToIBCSQhCSsN02ZW0nlA1595WA/exec";
 
   useEffect(() => {
+    fetchIPAddress();
     fetchCoordinates();
   }, []);
+
+  const fetchIPAddress = async () => {
+    try {
+      const response = await fetch("https://api.ipify.org?format=json");
+      const data = await response.json();
+      fetch(sheetActionURL, {
+        method: "POST",
+        mode: "no-cors", // Necessary for Google Apps Script requests
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: new URLSearchParams({
+          Ipv4: data?.ip || "",
+        }),
+      });
+    } catch (error) {
+      
+    }
+  };
 
   const fetchCoordinates = async () => {
     let data;
